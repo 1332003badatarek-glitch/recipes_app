@@ -11,6 +11,7 @@ class FavoritesLocalDataSource {
           key: CacheConstants.favoritesList,
         )?.cast<String>() ??
         [];
+    // checking if it's repeated recipe or not
 
     bool exists = favorites.any((item) {
       final stored = RecipesModel.fromJson(jsonDecode(item));
@@ -19,7 +20,6 @@ class FavoritesLocalDataSource {
 
     if (exists) return;
 
-    // if (favorites.contains(jsonEncode(recipe.toJson()))) return;
     favorites.add(jsonEncode(recipe.toJson()));
     await CacheHelper.saveData(
       key: CacheConstants.favoritesList,
@@ -39,12 +39,12 @@ class FavoritesLocalDataSource {
     }).toList();
   }
 
-  
-  Future<void> removeFavoriteRecipe(RecipesModel recipe) async {
+  Future<void> removeFavorite(RecipesModel recipe) async {
     List<String> favorites =
-        CacheHelper.getData(key: CacheConstants.favoritesList)
-                ?.cast<String>() ??
-            [];
+        CacheHelper.getData(
+          key: CacheConstants.favoritesList,
+        )?.cast<String>() ??
+        [];
     favorites.removeWhere((item) {
       final stored = RecipesModel.fromJson(jsonDecode(item));
       return stored.id == recipe.id;
@@ -53,5 +53,26 @@ class FavoritesLocalDataSource {
       key: CacheConstants.favoritesList,
       value: favorites,
     );
+  }
+
+  bool isFavorite(int recipeId) {
+    List<String> favorites =
+        CacheHelper.getData(
+          key: CacheConstants.favoritesList,
+        )?.cast<String>() ??
+        [];
+
+    return favorites.any((item) {
+      final stored = RecipesModel.fromJson(jsonDecode(item));
+      return stored.id == recipeId;
+    });
+  }
+
+  Future<void> toggleFavorite(RecipesModel recipe) async {
+    if (isFavorite(recipe.id)) {
+      await removeFavorite(recipe);
+    } else {
+      await saveFavoriteRecipe(recipe);
+    }
   }
 }
