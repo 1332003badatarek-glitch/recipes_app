@@ -8,27 +8,23 @@ class FavoritesRepo {
 
   FavoritesRepo({required this.local});
 
-  Future<Either<FavoritesFailure, List<RecipesModel>>> getFavorites() async {
+  Future<Either<FavoritesException, List<RecipesModel>>> getFavorites() async {
     try {
       final favorites = local.getFavorites();
       return Right(favorites);
     } catch (_) {
-      return const Left(
-        FavoritesFailure("Failed to load favorites"),
-      );
+      return const Left(FavoritesException("Failed to load favorites"));
     }
   }
 
-  Future<Either<FavoritesFailure, void>> toggleFavorite(
+  Future<Either<FavoritesException, void>> toggleFavorite(
     RecipesModel recipe,
   ) async {
     try {
       await local.toggleFavorite(recipe);
       return const Right(null);
     } catch (_) {
-      return const Left(
-        FavoritesFailure("Failed to update favorites"),
-      );
+      return const Left(FavoritesException("Failed to update favorites"));
     }
   }
 
