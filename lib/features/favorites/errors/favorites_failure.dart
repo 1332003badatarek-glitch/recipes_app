@@ -1,4 +1,4 @@
-class FavoritesFailure {
+class FavoritesException {
   final String message;
-  const FavoritesFailure(this.message);
+  const FavoritesException(this.message);
 }
