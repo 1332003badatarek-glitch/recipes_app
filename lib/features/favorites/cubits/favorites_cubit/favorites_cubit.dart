@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
@@ -12,42 +11,54 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   FavoritesCubit(this.repo) : super(FavoritesInitial());
 
   final Set<int> _favoriteIds = {};
+  final List<RecipesModel> _favorites = [];
 
-  void loadFavorites() async {
+  // تحميل أولي
+  Future<void> loadFavorites() async {
     emit(FavoritesLoading());
+
     final result = await repo.getFavorites();
-    result.fold(
-      (error) {
-        emit(FavoritesFailure(error: error));
-      },
-      (favorites) {
-        final favoritesList = favorites;
-        _favoriteIds
-          ..clear()
-          ..addAll(favorites.map((e) => e.id));
-        emit(FavoritesLoaded(favoritesList: favoritesList));
-      },
-    );
+    result.fold((error) => emit(FavoritesFailure(error: error)), (favorites) {
+      _favorites
+        ..clear()
+        ..addAll(favorites);
+
+      _favoriteIds
+        ..clear()
+        ..addAll(favorites.map((e) => e.id));
+
+      emit(
+        FavoritesLoaded(
+          favorites: List.unmodifiable(_favorites),
+          favoriteIds: Set.unmodifiable(_favoriteIds),
+        ),
+      );
+    });
   }
 
   bool isFavorite(int recipeId) {
     return _favoriteIds.contains(recipeId);
   }
 
+  // Toggle من أي مكان في الأبلكيشن
   Future<void> toggleFavorite(RecipesModel recipe) async {
     final result = await repo.toggleFavorite(recipe);
-    result.fold(
-      (error) {
-        emit(FavoritesFailure(error: error));
-      },
-      (_) {
-        if (_favoriteIds.contains(recipe.id)) {
-          _favoriteIds.remove(recipe.id);
-        } else {
-          _favoriteIds.add(recipe.id);
-        }
-        emit(FavoritesUpdated());
-      },
-    );
+
+    result.fold((error) => emit(FavoritesFailure(error: error)), (_) {
+      if (_favoriteIds.contains(recipe.id)) {
+        _favoriteIds.remove(recipe.id);
+        _favorites.removeWhere((e) => e.id == recipe.id);
+      } else {
+        _favoriteIds.add(recipe.id);
+        _favorites.add(recipe);
+      }
+
+      emit(
+        FavoritesLoaded(
+          favorites: List.unmodifiable(_favorites),
+          favoriteIds: Set.unmodifiable(_favoriteIds),
+        ),
+      );
+    });
   }
 }
