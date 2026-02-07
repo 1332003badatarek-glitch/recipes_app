@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipesapp/config/themes/app_colors.dart';
 import 'package:recipesapp/config/themes/app_fonts.dart';
-import 'package:recipesapp/features/recipes/presentation/widgets/recipe_rating.dart';
+import 'package:recipesapp/core/widgets/recipe_rating.dart';
 
 class RecipeInstructionsAndRating extends StatelessWidget {
   final String instructions;

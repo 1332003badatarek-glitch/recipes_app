@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipesapp/config/themes/app_colors.dart';
-import 'package:recipesapp/config/themes/app_fonts.dart';
+import 'package:recipesapp/core/widgets/recipe_prep_time.dart';
 
 class RecipeNameAndPrepTime extends StatelessWidget {
   final String recipeName;
@@ -21,25 +19,7 @@ class RecipeNameAndPrepTime extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.only(right: 2),
-          child: Row(
-            children: [
-              FaIcon(
-                FontAwesomeIcons.alarmClock,
-                color: AppColors.primaryColor,
-                size: 15,
-              ),
-              SizedBox(width: 4),
-              Text(
-                '$prepTime',
-                style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: AppFonts.poppines,
-                ),
-              ),
-            ],
-          ),
+          child: RecipePrepTime(prepTime: prepTime),
         ),
       ],
     );

@@ -3,7 +3,7 @@ import 'package:recipesapp/config/themes/app_colors.dart';
 import 'package:recipesapp/config/themes/app_fonts.dart';
 import 'package:recipesapp/core/utils/app_functions.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
-import 'package:recipesapp/features/recipes/presentation/widgets/recipe_rating.dart';
+import 'package:recipesapp/core/widgets/recipe_rating.dart';
 
 class DetailsRecipeCard extends StatelessWidget {
   const DetailsRecipeCard({super.key, required this.recipesModel});

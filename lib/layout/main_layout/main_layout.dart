@@ -15,27 +15,14 @@ class MainLayout extends StatelessWidget {
         children: [
           BlocBuilder<NavigationCubit, int>(
             builder: (context, currentState) {
-              return AnimatedSwitcher(
-                duration: Duration(seconds: 20),
-                transitionBuilder: (child, animation) {
-                  return SlideTransition(
-                    position: Tween<Offset>(
-                      begin: Offset(1, 0),
-                      end: Offset(0, 0),
-                    ).animate(animation),
-
-                    child: child,
-                  );
-                },
-                child: IndexedStack(
-                  index: currentState,
-                  children: [
-                    HomeView(),
-                    Container(),
-                    FavoritesView(),
-                    Container(),
-                  ],
-                ),
+              return IndexedStack(
+                index: currentState,
+                children: [
+                  HomeView(),
+                  Container(),
+                  FavoritesView(),
+                  Container(),
+                ],
               );
             },
           ),
