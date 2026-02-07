@@ -9,6 +9,7 @@ import 'package:recipesapp/config/themes/theme_data_light/light_theme.dart';
 import 'package:recipesapp/core/DI/injection.dart';
 import 'package:recipesapp/features/auth/data/data_source/local_data_source.dart';
 import 'package:recipesapp/features/auth/presentation/views/login_view.dart';
+import 'package:recipesapp/features/favorites/cubits/favorites_cubit/favorites_cubit.dart';
 import 'package:recipesapp/features/recipes/cubit/recipes/recipes_cubit.dart';
 import 'package:recipesapp/layout/main_layout/main_layout.dart';
 import 'package:recipesapp/layout/main_layout/navigation_cubit.dart';
@@ -53,6 +54,7 @@ class RecipesApp extends StatelessWidget {
         builder: (context, themeMode) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(create: (context) => getIt<FavoritesCubit>()),
               BlocProvider<RecipesCubit>(
                 create: (context) => getIt<RecipesCubit>(),
               ),
