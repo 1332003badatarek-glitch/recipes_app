@@ -8,6 +8,9 @@ import 'package:recipesapp/features/auth/cubits/login_cubit/login_cubit.dart';
 import 'package:recipesapp/features/auth/data/api/login_api_service.dart';
 import 'package:recipesapp/features/auth/data/data_source/local_data_source.dart';
 import 'package:recipesapp/features/auth/data/repo/auth_repo.dart';
+import 'package:recipesapp/features/favorites/cubits/favorites_cubit/favorites_cubit.dart';
+import 'package:recipesapp/features/favorites/data/data_source/favorites_local_data_source.dart';
+import 'package:recipesapp/features/favorites/data/repo/favorites_repo.dart';
 import 'package:recipesapp/features/recipes/cubit/recipes/recipes_cubit.dart';
 import 'package:recipesapp/features/recipes/data/api/recipes_api_service.dart';
 import 'package:recipesapp/features/recipes/data/repo/recipes_repo.dart';
@@ -37,7 +40,6 @@ Future<void> setupDI() async {
 
   //theme
 
-
   getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 
   //auth feature
@@ -66,4 +68,14 @@ Future<void> setupDI() async {
   getIt.registerFactory<RecipesCubit>(
     () => RecipesCubit(getIt<RecipesRepo>(), getIt<AuthRepo>()),
   );
+
+  //favorites
+
+  getIt.registerLazySingleton<FavoritesLocalDataSource>(
+    () => FavoritesLocalDataSource(),
+  );
+  getIt.registerLazySingleton<FavoritesRepo>(
+    () => FavoritesRepo(local: getIt<FavoritesLocalDataSource>()),
+  );
+  getIt.registerLazySingleton<FavoritesCubit>(()=> FavoritesCubit(getIt<FavoritesRepo>()));
 }
