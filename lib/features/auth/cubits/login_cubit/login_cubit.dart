@@ -4,15 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipesapp/core/errors/api_errors/api_error_model.dart';
 import 'package:recipesapp/features/auth/data/models/login_response_model.dart';
-import 'package:recipesapp/features/auth/data/repo/auth_repo.dart';
+import 'package:recipesapp/features/auth/data/repo/login_repo.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(AuthRepo loginRepo)
+  LoginCubit(LoginRepo loginRepo)
     : _loginRepo = loginRepo,
       super(LoginInitial());
-  final AuthRepo _loginRepo;
+  final LoginRepo _loginRepo;
 
   Future<void> login(String userName, String password) async {
     emit(LoginLoading());

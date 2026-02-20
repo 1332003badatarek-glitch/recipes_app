@@ -9,10 +9,10 @@ import 'package:recipesapp/features/auth/data/api/login_api_service.dart';
 import 'package:recipesapp/features/auth/data/data_source/local_data_source.dart';
 import 'package:recipesapp/features/auth/data/models/login_response_model.dart';
 
-class AuthRepo {
+class LoginRepo {
   final LoginService _loginService;
   final AuthLocalDataSource _authLocalDataSource;
-  AuthRepo({
+  LoginRepo({
     required LoginService loginService,
     required AuthLocalDataSource authLocalDataSource,
   }) : _loginService = loginService,
@@ -47,6 +47,7 @@ class AuthRepo {
       );
     }
   }
+
   LoginResponseModel? getCachedUserData() {
     return _authLocalDataSource.getUserData();
   }

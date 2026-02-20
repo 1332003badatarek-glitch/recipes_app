@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipesapp/core/errors/api_errors/api_error_model.dart';
 import 'package:recipesapp/features/auth/data/models/login_response_model.dart';
-import 'package:recipesapp/features/auth/data/repo/auth_repo.dart';
+import 'package:recipesapp/features/auth/data/repo/login_repo.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
 import 'package:recipesapp/features/recipes/data/repo/recipes_repo.dart';
 
@@ -10,7 +10,7 @@ part 'recipes_state.dart';
 
 class RecipesCubit extends Cubit<RecipesState> {
   final RecipesRepo recipesRepo;
-  final AuthRepo authRepo;
+  final LoginRepo authRepo;
 
   RecipesCubit(this.recipesRepo, this.authRepo) : super(RecipesInitial());
 
