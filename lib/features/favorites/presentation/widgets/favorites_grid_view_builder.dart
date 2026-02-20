@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipesapp/core/models/models/recipes_model.dart';
 import 'package:recipesapp/features/favorites/presentation/widgets/favorites_grid_view_item.dart';
 
 class FavoritesGridViewBuilder extends StatelessWidget {
-  const FavoritesGridViewBuilder({super.key});
+  final List<RecipesModel> recipes;
+  const FavoritesGridViewBuilder({super.key, required this.recipes});
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +16,11 @@ class FavoritesGridViewBuilder extends StatelessWidget {
         crossAxisSpacing: 24,
         childAspectRatio: 0.75,
       ),
-      itemCount: 10,
+      itemCount: recipes.length,
       itemBuilder: (context, index) {
-        return FavoritesGridViewItem(
-          image: 'assets/images/test_image.webp',
-          title: 'abdallah',
-          description: 'hhhhhhhhhhhhhhhhhhhhhhhh',
-          rating: 4.1,
-          time: "30min",
-          isFavorite: true,
-          onFavoriteTap: () {},
+        final recipe = recipes[index];
+        return FavoritesGridViewItem(recipe: recipe,
+
         );
       },
     );

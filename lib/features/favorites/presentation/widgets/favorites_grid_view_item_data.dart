@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:recipesapp/config/themes/app_colors.dart';
 import 'package:recipesapp/config/themes/app_fonts.dart';
@@ -7,8 +6,16 @@ import 'package:recipesapp/core/widgets/recipe_prep_time.dart';
 import 'package:recipesapp/core/widgets/recipe_rating.dart';
 
 class FavoritesGridViewItemData extends StatelessWidget {
+  final double rating;
+  final int prepTime;
+  final String name;
+  final String instructions;
+
   const FavoritesGridViewItemData({
     super.key,
+    required this.rating,
+    required this.prepTime,
+    required this.name, required this.instructions,
   });
 
   @override
@@ -16,12 +23,12 @@ class FavoritesGridViewItemData extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
-    
+
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 2),
           child: Text(
-            'Beans Burger',
+            name,
             style: AppTextStyles.baseSubText.copyWith(
               color: AppColors.brownTowColor,
               fontSize: 12,
@@ -29,7 +36,7 @@ class FavoritesGridViewItemData extends StatelessWidget {
           ),
         ),
         Text(
-          'Cheesy broccoli-filled lasagna layersCheesy ',
+          instructions,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -44,11 +51,11 @@ class FavoritesGridViewItemData extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RecipeRating(
-              rating: 4,
+              rating: rating,
               iconColor: AppColors.primaryColor,
               textColor: AppColors.primaryColor,
             ),
-            RecipePrepTime(prepTime: 30),
+            RecipePrepTime(prepTime: prepTime),
           ],
         ),
       ],
