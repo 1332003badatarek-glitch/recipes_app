@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:recipesapp/config/themes/app_colors.dart';
 
 class CustomeTextButton extends StatelessWidget {
   final String text;
@@ -12,12 +12,23 @@ class CustomeTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: TextButton(
-        onPressed: () {},
-        child: Text(text, style: Theme.of(context).textTheme.headlineLarge),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          onPressed: onPressed,
+          child: Text(
+            textAlign: TextAlign.left,
+            text,
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              height: 1.4,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
