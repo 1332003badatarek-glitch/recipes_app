@@ -18,3 +18,5 @@ class FavoritesFailure extends FavoritesState {
   final FavoritesException error;
   FavoritesFailure({required this.error});
 }
+
+
