@@ -7,7 +7,7 @@ import 'package:recipesapp/core/session/session_maneger.dart';
 import 'package:recipesapp/features/auth/cubits/login_cubit/login_cubit.dart';
 import 'package:recipesapp/features/auth/data/api/login_api_service.dart';
 import 'package:recipesapp/features/auth/data/data_source/local_data_source.dart';
-import 'package:recipesapp/features/auth/data/repo/auth_repo.dart';
+import 'package:recipesapp/features/auth/data/repo/login_repo.dart';
 import 'package:recipesapp/features/favorites/cubits/favorites_cubit/favorites_cubit.dart';
 import 'package:recipesapp/features/favorites/data/data_source/favorites_local_data_source.dart';
 import 'package:recipesapp/features/favorites/data/repo/favorites_repo.dart';
@@ -48,12 +48,12 @@ Future<void> setupDI() async {
     () => LoginService(getIt<Dio>(instanceName: ApiConstants.dioPublic)),
   );
   getIt.registerLazySingleton(
-    () => AuthRepo(
+    () => LoginRepo(
       loginService: getIt<LoginService>(),
       authLocalDataSource: getIt<AuthLocalDataSource>(),
     ),
   );
-  getIt.registerLazySingleton(() => LoginCubit(getIt<AuthRepo>()));
+  getIt.registerLazySingleton(() => LoginCubit(getIt<LoginRepo>()));
 
   //recipes feature
 
@@ -66,7 +66,7 @@ Future<void> setupDI() async {
   );
 
   getIt.registerFactory<RecipesCubit>(
-    () => RecipesCubit(getIt<RecipesRepo>(), getIt<AuthRepo>()),
+    () => RecipesCubit(getIt<RecipesRepo>(), getIt<LoginRepo>()),
   );
 
   //favorites
@@ -77,5 +77,7 @@ Future<void> setupDI() async {
   getIt.registerLazySingleton<FavoritesRepo>(
     () => FavoritesRepo(local: getIt<FavoritesLocalDataSource>()),
   );
-  getIt.registerLazySingleton<FavoritesCubit>(()=> FavoritesCubit(getIt<FavoritesRepo>()));
+  getIt.registerLazySingleton<FavoritesCubit>(
+    () => FavoritesCubit(getIt<FavoritesRepo>()),
+  );
 }
