@@ -13,7 +13,7 @@ class FavoritesView extends StatelessWidget {
         title: Text('Favorites'),
       ),
 
-      body: FavoritesViewBody(),
+      body: SafeArea(child: FavoritesViewBody()),
     );
   }
 }
