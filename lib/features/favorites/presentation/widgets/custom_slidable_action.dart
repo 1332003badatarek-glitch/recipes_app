@@ -3,8 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:recipesapp/config/themes/app_colors.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
 
-class CustomeSlidableAction extends StatelessWidget {
-  const CustomeSlidableAction({
+class CustomSlidableActions extends StatelessWidget {
+  const CustomSlidableActions({
     super.key,
     required this.recipe,
     required this.onPressed,

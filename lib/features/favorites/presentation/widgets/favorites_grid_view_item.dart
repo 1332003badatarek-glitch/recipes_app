@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -30,11 +29,11 @@ class FavoritesGridViewItem extends StatelessWidget {
           ? ActionPane(
               motion: const DrawerMotion(),
               children: [
-                CustomeSlidableAction(
-                  recipe: recipe,
+                CustomSlidableActions(
                   onPressed: (context) {
                     context.read<FavoritesCubit>().removeFavorite(recipe);
                   },
+                  recipe: recipe,
                 ),
               ],
             )
@@ -44,7 +43,7 @@ class FavoritesGridViewItem extends StatelessWidget {
           ? ActionPane(
               motion: const DrawerMotion(),
               children: [
-                CustomeSlidableAction(
+                CustomSlidableActions(
                   recipe: recipe,
                   onPressed: (context) {
                     context.read<FavoritesCubit>().removeFavorite(recipe);
@@ -56,7 +55,6 @@ class FavoritesGridViewItem extends StatelessWidget {
 
       child: InkWell(
         onTap: () {
-          log('taped');
           Navigator.pushNamed(
             context,
             AppRouteNames.detailsView,
