@@ -108,4 +108,3 @@ class FavoritesGridViewItem extends StatelessWidget {
     );
   }
 }
-

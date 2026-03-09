@@ -18,6 +18,7 @@ class CustomeSlidableAction extends StatelessWidget {
     return SlidableAction(
       onPressed: onPressed,
       backgroundColor: AppColors.primaryColor,
+      autoClose: true,
       icon: Icons.delete,
       label: 'Delete',
       borderRadius: BorderRadius.circular(8),
