@@ -35,4 +35,15 @@ class FavoritesRepo {
       return false;
     }
   }
+
+  Future<Either<FavoritesException, void>> removeFavorite(
+    RecipesModel recipe,
+  ) async {
+    try {
+      await local.removeFavorite(recipe);
+      return const Right(null);
+    } catch (_) {
+      return const Left(FavoritesException("Failed to remove favorite"));
+    }
+  }
 }

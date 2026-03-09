@@ -61,4 +61,19 @@ class FavoritesCubit extends Cubit<FavoritesState> {
       );
     });
   }
+
+  Future<void> removeFavorite(RecipesModel recipe) async {
+    final result = await repo.removeFavorite(recipe);
+
+    result.fold((error) => emit(FavoritesFailure(error: error)), (_) {
+      _favoriteIds.remove(recipe.id);
+      _favorites.removeWhere((e) => e.id == recipe.id);
+      emit(
+        FavoritesLoaded(
+          favorites: List.unmodifiable(_favorites),
+          favoriteIds: Set.unmodifiable(_favoriteIds),
+        ),
+      );
+    });
+  }
 }
