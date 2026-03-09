@@ -43,7 +43,7 @@ class FavoritesGridViewItem extends StatelessWidget {
           Positioned(
             left: -5,
             right: -5,
-            top: -26,
+            top: -36,
             child: Center(
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.19,

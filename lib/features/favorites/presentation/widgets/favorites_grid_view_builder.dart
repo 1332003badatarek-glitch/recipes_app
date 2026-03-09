@@ -9,7 +9,7 @@ class FavoritesGridViewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: EdgeInsets.all(30),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 48,
@@ -19,9 +19,7 @@ class FavoritesGridViewBuilder extends StatelessWidget {
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         final recipe = recipes[index];
-        return FavoritesGridViewItem(recipe: recipe,
-
-        );
+        return FavoritesGridViewItem(recipe: recipe);
       },
     );
   }
