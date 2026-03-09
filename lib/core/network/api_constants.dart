@@ -5,6 +5,7 @@ class ApiConstants {
   //end points
   static const String login = 'auth/login';
   static const String recipes = 'recipes';
+  static const String recipesByMealType = "/recipes/meal-type/{type}";
 
   //query param
 
