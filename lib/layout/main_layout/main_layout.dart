@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recipesapp/features/categories/presentation/views/categories_view.dart';
 import 'package:recipesapp/features/favorites/presentation/views/favorites_view.dart';
 import 'package:recipesapp/features/recipes/presentation/views/home_view.dart';
 import 'package:recipesapp/features/recipes/presentation/widgets/custome_botom_navigation_bar.dart';
@@ -19,7 +20,7 @@ class MainLayout extends StatelessWidget {
                 index: currentState,
                 children: [
                   HomeView(),
-                  Container(),
+                  CategoriesView(),
                   FavoritesView(),
                   Container(),
                 ],
