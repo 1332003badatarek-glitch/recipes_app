@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipesapp/config/themes/app_colors.dart';
 import 'package:recipesapp/features/favorites/cubits/favorites_cubit/favorites_cubit.dart';
-import 'package:recipesapp/features/favorites/presentation/widgets/favorites_grid_view_builder.dart';
+import 'package:recipesapp/features/favorites/presentation/widgets/favorites_view_builder.dart';
 
 class FavoritesViewBody extends StatelessWidget {
   const FavoritesViewBody({super.key});
@@ -25,7 +25,7 @@ class FavoritesViewBody extends StatelessWidget {
             );
           }
 
-          return FavoritesGridViewBuilder(recipes: state.favorites);
+          return FavoritwsViewBuilder(recipes: state.favorites);
         }
         if (state is FavoritesFailure) {
           return Center(child: Text(state.error.message));
