@@ -1,10 +1,9 @@
-
-import 'package:flutter/widgets.dart';
-import 'package:recipesapp/core/utils/app_constants.dart';
-import 'package:recipesapp/features/categories/data/enums/category_name.dart';
+import 'package:flutter/material.dart';
+import 'package:recipesapp/features/categories/data/models/category_model.dart';
 
 class CategoriesItem extends StatelessWidget {
-  const CategoriesItem({super.key});
+    final CategoryModel category;
+  const CategoriesItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +17,16 @@ class CategoriesItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
-              image: AssetImage(AppConstants.appetizer),
+              image: AssetImage(category.image),
 
               fit: BoxFit.cover,
             ),
           ),
         ),
-        Text(CategoryName.appetizer.name),
+        Text(
+          category.title,
+          style: TextTheme.of(context).headlineLarge,
+        ),
       ],
     );
   }
