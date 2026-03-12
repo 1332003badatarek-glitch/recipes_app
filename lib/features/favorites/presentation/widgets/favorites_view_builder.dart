@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
-import 'package:recipesapp/core/widgets/custom_grid_view_builder.dart';
 import 'package:recipesapp/features/favorites/presentation/widgets/favorites_grid_view_item.dart';
 
 class FavoritwsViewBuilder extends StatelessWidget {
@@ -9,7 +8,14 @@ class FavoritwsViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomGridViewBuilder(
+    return GridView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 48,
+        crossAxisSpacing: 22,
+        childAspectRatio: 0.70,
+      ),
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         final recipe = recipes[index];
