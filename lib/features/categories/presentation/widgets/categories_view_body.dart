@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:recipesapp/core/utils/app_constants.dart';
 import 'package:recipesapp/features/categories/presentation/widgets/categories_item.dart';
 
 class CategoriesViewBody extends StatelessWidget {
@@ -16,9 +17,9 @@ class CategoriesViewBody extends StatelessWidget {
           crossAxisSpacing: 20,
           childAspectRatio: 0.82,
         ),
-        itemCount: 6,
+        itemCount: AppConstants.categories.length,
         itemBuilder: (context, index) {
-          return CategoriesItem();
+          return CategoriesItem(category: AppConstants.categories[index]);
         },
       ),
     );
