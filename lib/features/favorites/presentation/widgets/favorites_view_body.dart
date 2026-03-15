@@ -19,6 +19,8 @@ class FavoritesViewBody extends StatelessWidget {
           if (state.favorites.isEmpty) {
             return const Center(
               child: Text(
+
+                
                 'No favorites yet',
                 style: TextStyle(color: AppColors.primaryColor, fontSize: 40),
               ),

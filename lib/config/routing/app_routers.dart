@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:recipesapp/config/routing/app_route_names.dart';
 import 'package:recipesapp/features/auth/presentation/views/login_view.dart';
 import 'package:recipesapp/features/auth/presentation/views/test_view.dart';
+import 'package:recipesapp/features/categories/data/models/category_model.dart';
+import 'package:recipesapp/features/categories/presentation/views/recipe_by_category_view.dart';
 import 'package:recipesapp/features/favorites/presentation/views/favorites_view.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
 import 'package:recipesapp/features/recipes/presentation/views/details_view.dart';
@@ -26,10 +28,13 @@ class AppRouters {
         return MaterialPageRoute(
           builder: (_) => DetailsView(recipesModel: recipesModel),
         );
-
       case AppRouteNames.mainLayout:
         return MaterialPageRoute(builder: (_) => MainLayout());
-
+      case AppRouteNames.recipeByCategoryView:
+  final category = routeSettings.arguments as CategoryModel;
+        return MaterialPageRoute(
+          builder: (_) => RecipeByCategoryView(category: category),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

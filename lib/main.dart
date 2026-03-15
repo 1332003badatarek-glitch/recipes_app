@@ -54,11 +54,13 @@ class RecipesApp extends StatelessWidget {
         builder: (context, themeMode) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => getIt<FavoritesCubit>()..loadFavorites()),
+              BlocProvider(
+                create: (context) => getIt<FavoritesCubit>()..loadFavorites(),
+              ),
               BlocProvider<RecipesCubit>(
                 create: (context) => getIt<RecipesCubit>(),
               ),
-              BlocProvider(create: (_) => NavigationCubit()),
+              BlocProvider(create: (context) => NavigationCubit()),
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,

@@ -1,3 +1,4 @@
+import 'package:recipesapp/features/categories/data/enums/category_name.dart';
 import 'package:recipesapp/features/categories/data/models/category_model.dart';
 
 class AppConstants {
@@ -11,12 +12,12 @@ class AppConstants {
   static String lunch = 'assets/images/lunch.png';
 
   static final List<CategoryModel> categories = [
-    CategoryModel(title: "Appetizer", image: AppConstants.appetizer),
-    CategoryModel(title: "Breakfast", image: AppConstants.breakfast),
-    CategoryModel(title: "Lunch", image: AppConstants.lunch),
-    CategoryModel(title: "Dinner", image: AppConstants.dinner),
-    CategoryModel(title: "Snack", image: AppConstants.snack),
-    CategoryModel(title: "Dessert", image: AppConstants.dessert),
+    CategoryModel(title: "Appetizer", image: AppConstants.appetizer,name: CategoryName.appetizer),
+    CategoryModel(title: "Breakfast", image: AppConstants.breakfast,name: CategoryName.breakfast),
+    CategoryModel(title: "Lunch", image: AppConstants.lunch,name: CategoryName.lunch),
+    CategoryModel(title: "Dinner", image: AppConstants.dinner,name: CategoryName.dinner),
+    CategoryModel(title: "Snack", image: AppConstants.snack,name: CategoryName.snack),
+    CategoryModel(title: "Dessert", image: AppConstants.dessert,name: CategoryName.dessert),
   ];
 }
 

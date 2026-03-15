@@ -13,6 +13,12 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final Set<int> _favoriteIds = {};
   final List<RecipesModel> _favorites = [];
 
+  @override
+  Future<void> close() {
+    debugPrint("FavoritesCubit CLOSED");
+    return super.close();
+  }
+
   // تحميل أولي
   Future<void> loadFavorites() async {
     emit(FavoritesLoading());
@@ -40,7 +46,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     return _favoriteIds.contains(recipeId);
   }
 
-  // Toggle من أي مكان في الأبلكيشن
+
   Future<void> toggleFavorite(RecipesModel recipe) async {
     final result = await repo.toggleFavorite(recipe);
 
@@ -61,6 +67,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
       );
     });
   }
+
 
   Future<void> removeFavorite(RecipesModel recipe) async {
     final result = await repo.removeFavorite(recipe);

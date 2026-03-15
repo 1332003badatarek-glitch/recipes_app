@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipesapp/core/errors/api_errors/api_error_model.dart';
 import 'package:recipesapp/core/models/models/recipes_model.dart';
@@ -12,18 +11,41 @@ class RecipesByCategoryCubit extends Cubit<RecipesByCategoryState> {
 
   RecipesByCategoryCubit(this.repo) : super(RecipesByCategoryInitial());
 
+  // Future<void> getRecipesByCategory(CategoryName categoryName) async {
+  //   emit(RecipesByCategoryLoading());
+
+  //   final result = await repo.getRecipesByMealType(categoryName);
+
+  //   result.fold(
+  //     (error) {
+  //       emit(RecipesByCategoryError(error));
+  //     },
+  //     (recipes) {
+  //       emit(RecipesByCategorySuccess(recipes));
+  //     },
+  //   );
+  // }
+
   Future<void> getRecipesByCategory(CategoryName categoryName) async {
-    emit(RecipesByCategoryLoading());
+  if (isClosed) return;
 
-    final result = await repo.getRecipesByMealType(categoryName);
+  emit(RecipesByCategoryLoading());
 
-    result.fold(
-      (error) {
+  final result = await repo.getRecipesByMealType(categoryName);
+
+  if (isClosed) return;
+
+  result.fold(
+    (error) {
+      if (!isClosed) {
         emit(RecipesByCategoryError(error));
-      },
-      (recipes) {
+      }
+    },
+    (recipes) {
+      if (!isClosed) {
         emit(RecipesByCategorySuccess(recipes));
-      },
-    );
-  }
+      }
+    },
+  );
+}
 }

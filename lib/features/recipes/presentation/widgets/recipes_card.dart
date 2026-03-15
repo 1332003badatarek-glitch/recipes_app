@@ -9,23 +9,35 @@ import 'package:recipesapp/features/recipes/presentation/widgets/recipe_data_con
 
 class RecipeCard extends StatelessWidget {
   final RecipesModel recipesModel;
+
   const RecipeCard({super.key, required this.recipesModel});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<FavoritesCubit>();
-    final isFav = cubit.isFavorite(recipesModel.id);
     return Stack(
       children: [
         Center(child: RecipeDataContainer(recipesModel: recipesModel)),
+
         ImageRecipesCard(image: recipesModel.image),
-        FavoriteIconButton(
-          iconSize: 20,
-          iconColor: AppColors.secondryColor,
-          backgroundColor: AppColors.componentPink,
-          isFavorite: isFav,
-          onPressed: () {
-            context.read<FavoritesCubit>().toggleFavorite(recipesModel);
+
+        /// Favorite button
+        BlocSelector<FavoritesCubit, FavoritesState, bool>(
+          selector: (state) {
+            if (state is FavoritesLoaded) {
+              return state.favoriteIds.contains(recipesModel.id);
+            }
+            return false;
+          },
+          builder: (context, isFav) {
+            return FavoriteIconButton(
+              iconSize: 20,
+              iconColor: AppColors.secondryColor,
+              backgroundColor: AppColors.componentPink,
+              isFavorite: isFav,
+              onPressed: () {
+                context.read<FavoritesCubit>().toggleFavorite(recipesModel);
+              },
+            );
           },
         ),
       ],
