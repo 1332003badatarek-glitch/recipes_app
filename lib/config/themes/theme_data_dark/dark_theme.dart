@@ -39,6 +39,7 @@ ThemeData darkTheme = ThemeData(
     contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
 
     filled: true,
+
     hintStyle: AppTextStyles.baseText.copyWith(
       color: AppColors.brownTowColor.withValues(alpha: 0.4),
     ),
@@ -54,12 +55,14 @@ ThemeData darkTheme = ThemeData(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(20),
       borderSide: BorderSide.none,
+      
     ),
   ),
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: AppColors.primaryColor,
     selectionColor: AppColors.primaryColor.withValues(alpha: 0.3),
     selectionHandleColor: AppColors.primaryColor,
+    
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
