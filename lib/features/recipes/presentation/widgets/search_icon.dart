@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipesapp/config/routing/app_route_names.dart';
 import 'package:recipesapp/config/themes/app_colors.dart';
 
 class SearchIcon extends StatelessWidget {
@@ -14,7 +15,12 @@ class SearchIcon extends StatelessWidget {
         color: AppColors.componentPink,
         shape: BoxShape.circle,
       ),
-      child: Icon(icon, size: 20, color: AppColors.secondryColor),
+      child: IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, AppRouteNames.searchView);
+        },
+        icon: Icon(icon, size: 20, color: AppColors.secondryColor),
+      ),
     );
   }
 }
