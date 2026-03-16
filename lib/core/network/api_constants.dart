@@ -6,7 +6,7 @@ class ApiConstants {
   static const String login = 'auth/login';
   static const String recipes = 'recipes';
   static const String recipesByMealType = "/recipes/meal-type/{type}";
-
+static const String searchRecipes = "/recipes/search";
   //query param
 
   static const String limit = 'limit';
