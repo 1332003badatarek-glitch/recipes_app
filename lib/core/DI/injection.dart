@@ -17,6 +17,9 @@ import 'package:recipesapp/features/favorites/data/repo/favorites_repo.dart';
 import 'package:recipesapp/features/recipes/cubit/recipes/recipes_cubit.dart';
 import 'package:recipesapp/features/recipes/data/api/recipes_api_service.dart';
 import 'package:recipesapp/features/recipes/data/repo/recipes_repo.dart';
+import 'package:recipesapp/features/search/cubit/search/search_cubit.dart';
+import 'package:recipesapp/features/search/data/apis/search_api_service.dart';
+import 'package:recipesapp/features/search/data/repo/search_repo.dart';
 
 final getIt = GetIt.instance;
 
@@ -95,6 +98,26 @@ Future<void> setupDI() async {
   );
   getIt.registerFactory<RecipesByCategoryCubit>(
   () => RecipesByCategoryCubit(getIt()),
+);
+
+//serach feature
+
+getIt.registerLazySingleton<SearchApiService>(
+  () => SearchApiService(
+    getIt<Dio>(instanceName: ApiConstants.dioPublic),
+  ),
+);
+
+getIt.registerLazySingleton<SearchRepo>(
+  () => SearchRepo(
+    searchApiService: getIt<SearchApiService>(),
+  ),
+);
+
+getIt.registerFactory<SearchCubit>(
+  () => SearchCubit(
+    getIt<SearchRepo>(),
+  ),
 );
 }
 
