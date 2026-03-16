@@ -7,4 +7,5 @@ class AppRouteNames {
   static const String favoritesView = '/favorites';
   static const String detailsView = '/details';
   static const String recipeByCategoryView = '/recipeByCategoryView';
+  static const String searchView = '/searchView';
 }

@@ -8,6 +8,7 @@ import 'package:recipesapp/features/favorites/presentation/views/favorites_view.
 import 'package:recipesapp/core/models/models/recipes_model.dart';
 import 'package:recipesapp/features/recipes/presentation/views/details_view.dart';
 import 'package:recipesapp/features/recipes/presentation/views/home_view.dart';
+import 'package:recipesapp/features/search/presentation/view/search_view.dart';
 import 'package:recipesapp/layout/main_layout/main_layout.dart';
 
 class AppRouters {
@@ -34,6 +35,10 @@ class AppRouters {
   final category = routeSettings.arguments as CategoryModel;
         return MaterialPageRoute(
           builder: (_) => RecipeByCategoryView(category: category),
+        );
+      case AppRouteNames.searchView:
+        return MaterialPageRoute(
+          builder: (_) => SearchView(),
         );
       default:
         return MaterialPageRoute(
