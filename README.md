@@ -1,4 +1,4 @@
-# Recipes App 
+# DishDash 
 
 A modern Flutter application that helps users discover, search, and save recipes from different categories. The app provides a smooth and responsive user experience while demonstrating best practices in Flutter development, state management, API integration, and local storage management.
 
@@ -138,8 +138,10 @@ flutter run
 
 ## Author
 
-**Abdulla Tarek**
+## 👨‍💻 Author
 
+**Abdulla Tarek**  
 Flutter Developer
 
-GitHub: https://github.com/1332003badatarek-glitch
+- GitHub: https://github.com/1332003badatarek-glitch
+- LinkedIn: www.linkedin.com/in/abdallahtarek33b
